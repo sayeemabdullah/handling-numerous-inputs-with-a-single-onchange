@@ -1,23 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
 
 function App() {
+  const [state, setState] = React.useState({
+    name: "",
+    email: "",
+  });
+
+  function handleOnChange(e) {
+    const value = e.target.value;
+    setState({
+      ...state,
+      [e.target.name]: value,
+    });
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <>
+        <form>
+          <div>
+            <input
+              onChange={handleOnChange}
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Name"
+            />
+          </div>
+          <div>
+            <input
+              onChange={handleOnChange}
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+            />
+          </div>
+        </form>
+        <div>
+          <button onClick={() => console.log(state)}>Submit</button>
+        </div>
+      </>
     </div>
   );
 }
